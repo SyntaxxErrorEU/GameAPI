@@ -1,7 +1,7 @@
-eu\soupmc\GameAPI$GameProfile.class
-eu\soupmc\GameAPI.class
-eu\soupmc\ExpAmount.class
-eu\soupmc\ExpAmount$3.class
-eu\soupmc\ExpAmount$1.class
-eu\soupmc\ExpAmount$2.class
-eu\soupmc\ExpAmount$4.class
+chat\belinked\ExpAmount.class
+chat\belinked\ExpAmount$1.class
+chat\belinked\ExpAmount$4.class
+chat\belinked\ExpAmount$2.class
+chat\belinked\GameAPI$GameProfile.class
+chat\belinked\GameAPI.class
+chat\belinked\ExpAmount$3.class

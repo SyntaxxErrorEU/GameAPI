@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"eu.soupmc","l":"ExpAmount"},{"p":"eu.soupmc","l":"GameAPI"},{"p":"eu.soupmc","l":"GameAPI.GameProfile"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"chat.belinked","l":"ExpAmount"},{"p":"chat.belinked","l":"GameAPI"},{"p":"chat.belinked","l":"GameAPI.GameProfile"}];updateSearchResults();
