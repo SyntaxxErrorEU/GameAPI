@@ -151,7 +151,8 @@ public class GameAPI {
         /** Constructor of GameProfile, requests the Xp of the profile when its created
          * @param p The player of the game profile */
         public GameProfile(Player p) {
-            this.update(p);
+            //this.update(p);
+            this.player = p;
         }
 
         private int xp;
@@ -162,19 +163,22 @@ public class GameAPI {
         /** Get the xp points of the Game Profile
          * @return Players xp */
         public int getPlayerXp() {
-            return this.xp;
+            //return this.xp;
+            return getXp(this.player);
         }
 
         /** Get the coins of the Game Profile
          * @return Players coins */
         public int getPlayerCoins() {
-            return this.coins;
+            //return this.coins;
+            return getCoins(this.player);
         }
 
         /** Get the nick status of the Game Profile
          * @return Players nick status*/
         public boolean getPlayerNick() {
-            return this.nick;
+            //return this.nick;
+            return (getNick(this.player).contains("true") ? true : false);
         }
 
         /** Add xp points to the Game Profile
@@ -196,7 +200,8 @@ public class GameAPI {
         }
 
         /** Requests again
-         * @param p Updates the values of the player from the database */
+         * @param p Updates the values of the player from the database
+         * @deprecated */
         public void update(Player p) {
             this.xp = getXp(p);
             this.coins = getCoins(p);
