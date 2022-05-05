@@ -106,7 +106,7 @@ public class GameAPI {
      * @param uuid The uuid of the player in the database
      * @param amount Optional, if not required, '', sets the amount of a write request, e.g. for addCoins: 20
      * @return A json string containing the http response */
-    protected String request(String type, String key, UUID uuid, String amount) {
+    public String request(String type, String key, UUID uuid, String amount) {
 
         HttpPost postRequest = new HttpPost("https://belinked.chat/soupmcGameApi.php");
         DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -196,6 +196,11 @@ public class GameAPI {
          * @param nick The nick status of the player */
         public void setPlayerNick(boolean nick) {
             setNick(this.player, nick);
+        }
+
+        /** Return the gamelog as a string */
+        public String getGameLog() {
+            return this.log.getGameLog();
         }
 
         /** Requests again
