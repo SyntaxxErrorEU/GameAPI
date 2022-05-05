@@ -153,12 +153,11 @@ public class GameAPI {
         public GameProfile(Player p) {
             //this.update(p);
             this.player = p;
+            this.log = new GameLog(this.player);
         }
 
-        private int xp;
-        private int coins;
-        private boolean nick;
         private Player player;
+        private GameLog log;
 
         /** Get the xp points of the Game Profile
          * @return Players xp */
@@ -209,5 +208,8 @@ public class GameAPI {
             this.nick = (nick.contains("true") ? true : (nick.contains("false")? false : false));
             this.player = p;
         }
+        private int xp;
+        private int coins;
+        private boolean nick;
     }
 }
