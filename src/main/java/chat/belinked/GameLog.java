@@ -31,6 +31,7 @@ public class GameLog {
 
     /** Get the gamelog */
     public String getGameLog() {
+        this.initGameLog();
         return this.log;
     }
 }
