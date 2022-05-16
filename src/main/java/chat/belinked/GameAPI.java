@@ -162,11 +162,9 @@ public class GameAPI {
         public GameProfile(Player p) {
             //this.update(p);
             this.player = p;
-            this.log = new GameLog(this.player);
         }
 
         private Player player;
-        private GameLog log;
 
         /** Get the xp points of the Game Profile
          * @return Players xp */
@@ -205,11 +203,6 @@ public class GameAPI {
          * @param nick The nick status of the player */
         public void setPlayerNick(boolean nick) {
             setNick(this.player, nick);
-        }
-
-        /** Return the gamelog as a string */
-        public String getGameLog() {
-            return this.log.getGameLog();
         }
 
         /** Requests again
