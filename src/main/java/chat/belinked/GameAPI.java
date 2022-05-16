@@ -65,6 +65,9 @@ public class GameAPI {
     protected static int getXp(Player p) {
         Gson gson = new Gson();
         Map<String, String> response = gson.fromJson(instance.request("read", "getXP", p.getUniqueId(), ""), HashMap.class);
+        if(response.get("errors") != "") {
+            Bukkit.getConsoleSender().sendMessage(response.get("errors"));
+        }
         return Integer.parseInt(response.get("result"));
     }
 
@@ -81,6 +84,9 @@ public class GameAPI {
     protected static int getCoins(Player p) {
         Gson gson = new Gson();
         Map<String, String> response = gson.fromJson(instance.request("read", "getCoins", p.getUniqueId(), ""), HashMap.class);
+        if(response.get("errors") != "") {
+            Bukkit.getConsoleSender().sendMessage(response.get("errors"));
+        }
         return Integer.parseInt(response.get("result"));
     }
 
@@ -90,6 +96,9 @@ public class GameAPI {
     protected static String getNick(Player p) {
         Gson gson = new Gson();
         Map<String, String> response = gson.fromJson(instance.request("read", "getNick", p.getUniqueId(), ""), HashMap.class);
+        if(response.get("errors") != "") {
+            Bukkit.getConsoleSender().sendMessage(response.get("errors"));
+        }
         return response.get("result").trim();
     }
 
