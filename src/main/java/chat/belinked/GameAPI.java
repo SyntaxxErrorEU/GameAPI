@@ -162,9 +162,11 @@ public class GameAPI {
         public GameProfile(Player p) {
             //this.update(p);
             this.player = p;
+            this.gameLog = new GameLog(p);
         }
 
         private Player player;
+        private GameLog gameLog;
 
         /** Get the xp points of the Game Profile
          * @return Players xp */
@@ -184,7 +186,13 @@ public class GameAPI {
          * @return Players nick status*/
         public boolean getPlayerNick() {
             //return this.nick;
-            return (getNick(this.player).contains("true") ? true : false);
+            return getNick(this.player).contains("true");
+        }
+
+        /** Get the gamelog object of the player
+         * @return Players gamelog */
+        public GameLog getGameLog() {
+            return this.gameLog;
         }
 
         /** Add xp points to the Game Profile
@@ -212,7 +220,7 @@ public class GameAPI {
             this.xp = getXp(p);
             this.coins = getCoins(p);
             String nick = getNick(p);
-            this.nick = (nick.contains("true") ? true : (nick.contains("false")? false : false));
+            this.nick = nick.contains("true");
             this.player = p;
         }
         private int xp;

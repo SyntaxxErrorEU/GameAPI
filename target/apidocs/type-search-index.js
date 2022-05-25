@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"chat.belinked","l":"ExpAmount"},{"p":"chat.belinked","l":"GameAPI"},{"p":"chat.belinked","l":"GameLog"},{"p":"chat.belinked","l":"GameAPI.GameProfile"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"chat.belinked","l":"ExpAmount"},{"p":"chat.belinked","l":"GameAPI"},{"p":"chat.belinked","l":"GameID"},{"p":"chat.belinked","l":"GameLog"},{"p":"chat.belinked","l":"GameAPI.GameProfile"}];updateSearchResults();
