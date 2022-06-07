@@ -26,10 +26,10 @@ public class GameLog {
     /** Request the gamelog and update the variable */
     private void initGameLog() {
         Gson gson = new Gson();
-        Map<String, List<Map<String, String>>> response = gson.fromJson(GameAPI.getInstance().request("read", "getGameLog", this.player.getUniqueId(),""),
+        Map<String, List<Map<String, String>>> response = gson.fromJson(GameAPI.request("read", "getGameLog", this.player.getUniqueId(),""),
                 HashMap.class);
-        for(int i = 0; i < response.size(); i++) {
-            this.log.add(response.get("response").get(i));
+        for(int i = 0; i < response.get("result").size(); i++) {
+            this.log.add(response.get("result").get(i));
         }
     }
 
@@ -42,6 +42,6 @@ public class GameLog {
     /** Add a game to the gamelog
      * @param result The GameID of the result */
     public void addGame(GameID result) {
-        GameAPI.getInstance().request("write", "addGame", this.player.getUniqueId(), result.getGameID());
+        GameAPI.request("write", "addGame", this.player.getUniqueId(), result.getGameID());
     }
 }

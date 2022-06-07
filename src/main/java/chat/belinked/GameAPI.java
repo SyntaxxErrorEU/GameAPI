@@ -21,18 +21,20 @@ import java.util.*;
 /** Main class of the Game API, used for basic cloudnet stuff + XP, Coins and Nick requests */
 public class GameAPI {
 
-    /** The main class of the plugin using this API */
-    public Class<? extends JavaPlugin> plugin;
-    /** The instance of this class */
+    /** Instance of the GameAPI */
     public static GameAPI instance;
-
-    /** Constructor to get the plugin class
-     * @param passedPlugin The plugin extending JavaPlugin */
-    public GameAPI(Class<? extends JavaPlugin> passedPlugin) {
-        this.plugin = passedPlugin;
+    public Class<? extends JavaPlugin> plugin;
+    /** Constructor to get the plugin class */
+    public GameAPI(Class<? extends JavaPlugin> plugin) {
+        this.plugin = plugin;
         instance = this;
         Bukkit.getConsoleSender().sendMessage("------ Hello from the GameApi ------");
         Bukkit.getConsoleSender().sendMessage("------ Developed by jobebe07  ------");
+    }
+
+    /** Get the instance of the GameAPI*/
+    public static GameAPI getInstance() {
+        return instance;
     }
 
     /** Set the ingame status of the server using the cloudnet API */
@@ -56,7 +58,7 @@ public class GameAPI {
      * @param player The player the Xp should be added to
      * @param xp The amount of xp the player should receive */
     protected static void addXp(Player player, int xp) {
-        instance.request("write", "addXP", player.getUniqueId(), "" + xp);
+        request("write", "addXP", player.getUniqueId(), "" + xp);
     }
 
     /** Get the XP from a player
@@ -64,7 +66,7 @@ public class GameAPI {
      * @return The players xp */
     protected static int getXp(Player p) {
         Gson gson = new Gson();
-        Map<String, String> response = gson.fromJson(instance.request("read", "getXP", p.getUniqueId(), ""), HashMap.class);
+        Map<String, String> response = gson.fromJson(request("read", "getXP", p.getUniqueId(), ""), HashMap.class);
         if(response.get("errors") != "") {
             Bukkit.getConsoleSender().sendMessage(response.get("errors"));
         }
@@ -75,7 +77,7 @@ public class GameAPI {
      * @param player The player the coins should be added to
      * @param coins The amount of coins the player should receive */
     protected static void addCoins(Player player, int coins) {
-        instance.request("write", "addCoins", player.getUniqueId(), "" + coins);
+        request("write", "addCoins", player.getUniqueId(), "" + coins);
     }
 
     /** Get the coins from a player
@@ -83,7 +85,7 @@ public class GameAPI {
      * @return The players coins */
     protected static int getCoins(Player p) {
         Gson gson = new Gson();
-        Map<String, String> response = gson.fromJson(instance.request("read", "getCoins", p.getUniqueId(), ""), HashMap.class);
+        Map<String, String> response = gson.fromJson(request("read", "getCoins", p.getUniqueId(), ""), HashMap.class);
         if(response.get("errors") != "") {
             Bukkit.getConsoleSender().sendMessage(response.get("errors"));
         }
@@ -95,7 +97,7 @@ public class GameAPI {
      * @return The String value of the nick status of the player */
     protected static String getNick(Player p) {
         Gson gson = new Gson();
-        Map<String, String> response = gson.fromJson(instance.request("read", "getNick", p.getUniqueId(), ""), HashMap.class);
+        Map<String, String> response = gson.fromJson(request("read", "getNick", p.getUniqueId(), ""), HashMap.class);
         if(response.get("errors") != "") {
             Bukkit.getConsoleSender().sendMessage(response.get("errors"));
         }
@@ -106,7 +108,7 @@ public class GameAPI {
      * @param p The player which nick should be set
      * @param value The boolean value the nick of the player should have */
     protected static void setNick(Player p, boolean value) {
-        instance.request("write", "setNick", p.getUniqueId(), (value ? "true" : "false"));
+        request("write", "setNick", p.getUniqueId(), (value ? "true" : "false"));
     }
 
     /** Method for a basic POST request to the WebClient API
@@ -115,7 +117,7 @@ public class GameAPI {
      * @param uuid The uuid of the player in the database
      * @param amount Optional, if not required, '', sets the amount of a write request, e.g. for addCoins: 20
      * @return A json string containing the http response */
-    public String request(String type, String key, UUID uuid, String amount) {
+    public static String request(String type, String key, UUID uuid, String amount) {
 
         HttpPost postRequest = new HttpPost("https://belinked.chat/soupmcGameApi.php");
         DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -149,13 +151,7 @@ public class GameAPI {
         return result;
     }
 
-    /** Returns the Game API instance
-     * @return GameAPI instance */
-    public static GameAPI getInstance() {
-        return instance;
-    }
-
-    /** Sub class to create a game profile of a certain player to have all methods at one location */
+    /** Subclass to create a game profile of a certain player to have all methods at one location */
     public static class GameProfile {
         /** Constructor of GameProfile, requests the Xp of the profile when its created
          * @param p The player of the game profile */
